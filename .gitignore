@@ -132,6 +132,6 @@ hs_err_pid*
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij
 
 # 내가 추가한 ignore
-*/1_Java.ini
+*/1_Java.iml
 .idea/*
 */.idea/*
