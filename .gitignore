@@ -130,3 +130,7 @@ fabric.properties
 hs_err_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij
+
+# 내가 추가
+*.ini
+.idea/*
