@@ -1,12 +1,14 @@
 package com.example.study.repository;
 
 import com.example.study.StudyApplicationTests;
+import com.example.study.model.entity.Item;
 import com.example.study.model.entity.User;
 import com.sun.source.tree.AssertTree;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Transient;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -22,23 +24,31 @@ public class UserRepositoryTest extends StudyApplicationTests {
         // String sql = insert into user(%s, %s, %d) value (account, email, age);
         User user = new User();
 
-        user.setAccount("testUser03");
-        user.setEmail("testUser03@gmail.com");
-        user.setPhoneNumber("010-1111-3333");
+        user.setAccount("testUser02");
+        user.setEmail("testUser02@gmail.com");
+        user.setPhoneNumber("010-2222-2222");
         user.setCreatedAt(LocalDateTime.now());
-        user.setCreatedBy("TestUser3");
+        user.setCreatedBy("TestUser2");
 
         User newUser = userRepository.save(user);
         System.out.println("newUser : " + newUser);
     }
 
     @Test
+    @Transactional
     public void read() {
-        Optional<User> user = userRepository.findById(2l);
+        // select * from user where id = ?
+        //Optional<User> user = userRepository.findById(1L);
+        Optional<User> user = userRepository.findByAccount("TestUser01");
 
         user.ifPresent(selectUser -> {
             System.out.println("user : " + selectUser);
             System.out.println("email : " + selectUser.getEmail());
+
+            selectUser.getOrderDetailList().stream().forEach(orderDetail -> {
+                Item item = orderDetail.getItem();
+                System.out.println(item);
+            });
         });
     }
 
@@ -46,7 +56,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
     @Test
     @Transient
     public void update() {
-        Optional<User> user = userRepository.findById(2l);
+        Optional<User> user = userRepository.findById(2L);
 
         user.ifPresent(selectUser -> {
             selectUser.setAccount("pppp");
@@ -60,7 +70,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
     @Test
     @Transient
     public void delete() {
-        Optional<User> user = userRepository.findById(1l);
+        Optional<User> user = userRepository.findById(1L);
 
         Assert.assertTrue(user.isPresent());        // true
 
@@ -68,7 +78,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
             userRepository.delete(selectUser);
         });
 
-        Optional<User> deleteUser = userRepository.findById(2l);
+        Optional<User> deleteUser = userRepository.findById(2L);
 
         Assert.assertFalse(deleteUser.isPresent());  // false
     }
