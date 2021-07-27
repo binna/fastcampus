@@ -22,19 +22,24 @@ public class User {
 
     //    @Column(name = "account") // 컬럼명과 변수명이 일치한 경우 생략 가능
     private String account;
+    private String password;
+    private String status;
     private String email;
     private String phoneNumber;
+    private LocalDateTime registeredAt;
+    private LocalDateTime unregisteredAt;
     private LocalDateTime createdAt;
     private String createdBy;
     private LocalDateTime updatedAt;
     private String updatedBy;
 
+
+    // FetchType.LAZY : 지연로딩, FetchType.EAGER : 즉시로딩(1 : 1)
+
     // 1 : N
     // User 입장에서 생각!
     // mappedBy의 user는 OrderDetail -> User user의 변수명과 일치해야함
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<OrderDetail> orderDetailList;
-
-    // FetchType.LAZY : 지연로딩, FetchType.EAGER : 즉시로딩(1 : 1)
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+//    private List<OrderDetail> orderDetailList;
 
 }
