@@ -9,4 +9,5 @@ import java.util.Optional;
 // QueryMethod
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+    User findFirstByPhoneNumberOrderByIdDesc(String phoneNumber);
 }
