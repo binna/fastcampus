@@ -1,6 +1,7 @@
 package com.example.study.controller;
 
 import com.example.study.model.SearchParam;
+import com.example.study.model.network.Header;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,6 +29,14 @@ public class GetController {
         System.out.println(searchParam.getPage());
 
         return searchParam;     // 스프링부트에서는 객체를 리턴하면 JSON 형태로 보여진다.
+    }
+
+    @GetMapping("/header")
+    public Header getHeader() {
+        return Header.builder()
+                .resultCode("OK")
+                .description("OK")
+                .build();
     }
 
 }
