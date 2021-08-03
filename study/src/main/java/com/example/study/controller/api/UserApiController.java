@@ -18,7 +18,7 @@ public class UserApiController implements CrudInterface<UserApiRequest, UserApiR
     private UserApiLogicService userApiLoginService;
 
     @Override
-    @PostMapping
+    @PostMapping("")
     public Header<UserApiResponse> create(@RequestBody Header<UserApiRequest> request) {
         log.info("{}", request);
         return userApiLoginService.create(request);
