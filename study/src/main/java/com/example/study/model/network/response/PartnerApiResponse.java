@@ -1,6 +1,5 @@
 package com.example.study.model.network.response;
 
-import com.example.study.model.entity.Item;
 import com.example.study.model.enumclass.PartnerStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
