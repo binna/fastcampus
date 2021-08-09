@@ -2,6 +2,7 @@ package com.example.study.repository;
 
 import com.example.study.StudyApplicationTests;
 import com.example.study.model.entity.OrderGroup;
+import com.example.study.model.enumclass.OrderGroupStatus;
 import com.example.study.model.enumclass.OrderType;
 import com.example.study.model.enumclass.PaymentType;
 import org.junit.Assert;
@@ -23,7 +24,7 @@ public class OrderGroupRepositoryTest extends StudyApplicationTests {
     public void create() {
         OrderGroup orderGroup = new OrderGroup();
 
-        orderGroup.setStatus("COMPUTER");
+        orderGroup.setStatus(OrderGroupStatus.COMPLETE);
         orderGroup.setOrderType(OrderType.ALL);
         orderGroup.setRevAddress("서울시 강남구");
         orderGroup.setRevName("홍길동");

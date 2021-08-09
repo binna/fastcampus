@@ -1,5 +1,6 @@
 package com.example.study.model.network.response;
 
+import com.example.study.model.enumclass.OrderGroupStatus;
 import com.example.study.model.enumclass.OrderType;
 import com.example.study.model.enumclass.PaymentType;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 @Builder
 public class OrderGroupApiResponse {
     private Long id;
-    private String status;
+    private OrderGroupStatus status;
     private OrderType orderType;
     private String revAddress;
     private String revName;

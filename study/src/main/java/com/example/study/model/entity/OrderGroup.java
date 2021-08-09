@@ -1,5 +1,6 @@
 package com.example.study.model.entity;
 
+import com.example.study.model.enumclass.OrderGroupStatus;
 import com.example.study.model.enumclass.OrderType;
 import com.example.study.model.enumclass.PaymentType;
 import lombok.*;
@@ -28,7 +29,8 @@ public class OrderGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private OrderGroupStatus status;
     @Enumerated(EnumType.STRING)
     private OrderType orderType;
     private String revAddress;

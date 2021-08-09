@@ -6,6 +6,7 @@ import com.example.study.model.entity.OrderDetail;
 import com.example.study.model.entity.OrderGroup;
 import com.example.study.model.entity.User;
 import com.example.study.model.enumclass.OrderDetailStatus;
+import com.example.study.model.enumclass.OrderGroupStatus;
 import com.example.study.model.enumclass.OrderType;
 import com.example.study.model.enumclass.PaymentType;
 import com.example.study.repository.ItemRepository;
@@ -40,26 +41,21 @@ public class OrderDetailSample extends StudyApplicationTests {
     private OrderGroupRepository orderGroupRepository;
 
     @Test
-    public void createOrder(){
-
+    public void createOrder() {
         List<User> userList = userRepository.findAll();
 
         for(int j = 0; j < 1; j++){
             User user = userList.get(j);
             item(user);
-
         }
 
-
         userList.forEach(user -> {
-
             int orderCount = random.nextInt(10) + 1;
+
             for (int i = 0; i < orderCount; i++) {
                 item(user);
             }
         });
-
-
     }
 
 
@@ -69,41 +65,38 @@ public class OrderDetailSample extends StudyApplicationTests {
         List<Item> items = new ArrayList<>();
         List<OrderDetail> orderHistoryDetails = new ArrayList<>();
 
-
-        int itemCount = random.nextInt(10)+1;
-        for(int i = 0 ; i < itemCount; i ++){
-            // db에 아이템 갯수가 총 500개 ( * 자신의 샘플에 맞추세요 )
-            int itemNumber = random.nextInt(405)+1;
+        int itemCount = random.nextInt(10) + 1;
+        for(int i = 0 ; i < itemCount; i ++) {
+            // db에 아이템 갯수가 총 405개
+            int itemNumber = random.nextInt(405) + 1;
 
             Item item = itemRepository.findById((long)itemNumber).get();
             totalAmount += item.getPrice().doubleValue();
             items.add(item);
         }
 
-
-        int s = random.nextInt(3)+1;
-        String status = "ORDERING";
+        int s = random.nextInt(3) + 1;
+        OrderGroupStatus status = OrderGroupStatus.ORDERING;
         PaymentType paymentType = PaymentType.BANK_TRANSFER;
-        switch (s){
+        switch (s) {
             case 1 :
-                status = "ORDERING";
+                status = OrderGroupStatus.ORDERING;
                 paymentType = PaymentType.BANK_TRANSFER;
                 break;
 
             case 2 :
-                status = "COMPLETE";
+                status = OrderGroupStatus.COMPLETE;
                 paymentType = PaymentType.CARD;
                 break;
 
             case 3 :
-                status = "CONFIRM";
+                status = OrderGroupStatus.COMPLETE;
                 paymentType = PaymentType.CASH;
                 break;
         }
 
         int t = random.nextInt(2)+1;
         OrderType type = t==1? OrderType.ALL:OrderType.EACH;
-
 
         OrderGroup orderGroup = OrderGroup.builder()
                 .user(user)
@@ -118,49 +111,45 @@ public class OrderDetailSample extends StudyApplicationTests {
                 .arrivalDate(getRandomDate().plusDays(3).toLocalDate())
                 .orderDetailList(orderHistoryDetails)
                 .build();
-
         orderGroupRepository.save(orderGroup);
-
-
 
         for(Item item : items){
 
-            String orderDetailStatus = "ORDERING";
-            switch (random.nextInt(3)+1){
+            OrderDetailStatus orderDetailStatus = OrderDetailStatus.ORDERING;
+            switch (random.nextInt(3) + 1){
                 case 1 :
-                    orderDetailStatus = "ORDERING";
+                    orderDetailStatus =  OrderDetailStatus.ORDERING;
                     break;
 
                 case 2 :
-                    orderDetailStatus = "COMPLETE";
+                    orderDetailStatus = OrderDetailStatus.COMPLETE;
                     break;
 
                 case 3 :
-                    orderDetailStatus = "CONFIRM";
+                    orderDetailStatus = OrderDetailStatus.CONFIRM;
                     break;
             }
-
 
             OrderDetail orderDetail = OrderDetail.builder()
                     .orderGroup(orderGroup)
                     .item(item)
                     .arrivalDate(type.equals(OrderType.ALL) ?
                             orderGroup.getArrivalDate() : getRandomDate().toLocalDate())
-                    .status(OrderDetailStatus.valueOf(type.equals(OrderType.ALL) ? status : orderDetailStatus))
+                    .quantity(1)
+                    .totalPrice(new BigDecimal(totalAmount))
+                    .status(orderDetailStatus)
                     .build();
             orderDetailRepository.save(orderDetail);
             orderHistoryDetails.add(orderDetail);
         }
-
-
     }
 
 
     private LocalDateTime getRandomDate(){
-        return LocalDateTime.of(2019,getRandomNumber(),getRandomNumber(),getRandomNumber(),getRandomNumber(),getRandomNumber());
+        return LocalDateTime.of(2019, getRandomNumber(), getRandomNumber(), getRandomNumber(), getRandomNumber(), getRandomNumber());
     }
 
     private int getRandomNumber(){
-        return random.nextInt(11)+1;
+        return random.nextInt(11) + 1;
     }
 }
