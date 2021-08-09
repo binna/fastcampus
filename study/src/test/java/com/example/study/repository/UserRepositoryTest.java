@@ -4,6 +4,7 @@ import com.example.study.StudyApplicationTests;
 import com.example.study.model.entity.Item;
 import com.example.study.model.entity.OrderGroup;
 import com.example.study.model.entity.User;
+import com.example.study.model.enumclass.UserStatus;
 import com.sun.source.tree.AssertTree;
 import org.junit.Assert;
 import org.junit.Test;
@@ -36,7 +37,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
 
         String account = "Test03";
         String password = "Test03";
-        String status = "REGISTERED";
+        UserStatus status = UserStatus.REGISTERED;
         String email = "Test03@gmail.com";
         String phoneNumber = "010-3333-3333";
         LocalDateTime registeredAt = LocalDateTime.now();

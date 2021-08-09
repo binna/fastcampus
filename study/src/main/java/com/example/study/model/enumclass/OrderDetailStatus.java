@@ -6,9 +6,9 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum OrderDetailStatus {
-    REGISTERED(0, "등록", "상품 상세 등록 상태"),
-    UNREGISTERED(1, "해지", "상품 상세 해지 상태"),
-    WAITING(2, "검수(대기)", "상품 상세 검수 상태")
+    ORDERING(0, "주문 중", "주문하고 있는 상태"),
+    COMPLETE(1, "주문 완료", "주문이 완료된 상태"),
+    CONFIRM(2, "주문 확인", "판매자가 주문을 확인한 상태")
     ;
 
     private Integer id;
