@@ -80,7 +80,8 @@ public class ItemApiLogicService extends BaseService<ItemApiRequest, ItemApiResp
     }
 
 
-    private Header<ItemApiResponse> response(Item item) {
+//    private Header<ItemApiResponse> response(Item item) {
+    public Header<ItemApiResponse> response(Item item) {
 
         String statusTitle = item.getStatus().getTitle();
         String statusDescription = item.getStatus().getDescription();
