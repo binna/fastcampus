@@ -8,3 +8,5 @@
 * [6주차(2021.07.05 ~ 2021.07.11)](https://github.com/binna/fastcampus/issues/8)
 * [7주차(2021.07.12 ~ 2021.07.18)](https://github.com/binna/fastcampus/issues/9)
 * [8주차(2021.07.19 ~ 2021.07.25)](https://github.com/binna/fastcampus/issues/10)
+* [9주차(2021.07.26 ~ 2021.08.01)](https://github.com/binna/fastcampus/issues/16)
+* [10주차(2021.08.02 ~ 2021.08.08)](https://github.com/binna/fastcampus/issues/17)
