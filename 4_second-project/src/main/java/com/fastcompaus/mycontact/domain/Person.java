@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 @Entity
@@ -14,9 +15,12 @@ import java.time.LocalDate;
 //@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 //@EqualsAndHashCode
 @Data       // @Getter + @Setter + @RequiredArgsConstructor + @ToString + @EqualsAndHashCode.
+            // => Data 어노테이션의 RequiredArgsConstructor 이
+            // NoArgsConstructor 가 덮어지면서
+            // RequiredArgsConstructor 의 효과가 없어지므로 다시 어노테이션으로 선언해줬다!!!
 public class Person {
 
     @Id
@@ -56,6 +60,9 @@ public class Person {
 
     @ToString.Exclude
     private String phoneNumber;
+
+    @OneToOne
+    private Block block;
 
 //    public Long getId() {
 //        return id;
