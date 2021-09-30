@@ -81,6 +81,10 @@ public class Person {
 
     // optional = false -> Block 의 값은 항상 필요하다는 의미(Inner Join 수행)
     //                     Block 없는 Person 없다는 제약조건!!
+
+    // orphanRemoval 옵션 -> true: 기존 NULL 처리된 자식을 DELETE
+    // PK(JoinColumn)값이 NULL 로 변한 자식은 고아객체라고 하여 연결된 점이 없는 객체이다.
+
 //    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 //    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
