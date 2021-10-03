@@ -1,6 +1,7 @@
 package com.fastcompaus.mycontact.reporitory;
 
 import com.fastcompaus.mycontact.domain.Person;
+import com.fastcompaus.mycontact.domain.dto.Birthday;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -60,6 +61,59 @@ class PersonRepositoryTest {
 
         System.out.println(map);
         System.out.println(map.get(person2));
+    }
+
+    @Test
+    void findByBloodType() {
+        givenPerson("martin", 10, "A");
+        givenPerson("david", 9, "B");
+        givenPerson("denis", 8,"O");
+        givenPerson("sophia", 8,"AB");
+        givenPerson("benny", 6, "A");
+        givenPerson("john", 5, "A");
+
+//        Person result = personRepository.findByBloodType("A");
+//        System.out.println(result);
+
+        List<Person> result = personRepository.findByBloodType("A");
+        result.forEach(System.out::println);
+    }
+
+    @Test
+    void findByBirthDayBetween() {
+        givenPerson("martin", 10, "A", LocalDate.of(1991, 8, 15));
+        givenPerson("david", 9, "B", LocalDate.of(1992, 7, 10));
+        givenPerson("denis", 8,"O", LocalDate.of(1993, 1, 5));
+        givenPerson("sophia", 8,"AB", LocalDate.of(1994, 6, 30));
+        givenPerson("benny", 6, "A", LocalDate.of(1995, 8, 30));
+
+        List<Person> result = personRepository
+//                .findByBirthDateBetween(
+//                        LocalDate.of(1991, 8, 1),
+//                        LocalDate.of(1991, 8, 31)
+//                );
+                .findByMonthOfBirthday(8);
+//                .findByMonthOfBirthdayAndDayOfBirthday(8, 30);
+
+        result.forEach(System.out::println);
+    }
+
+    private void givenPerson(String name, int age, String bloodType) {
+        personRepository.save(new Person(name, age, bloodType));
+    }
+
+    private void givenPerson(String name, int age, String bloodType, LocalDate birthDay) {
+        Person person = new Person(name, age, bloodType);
+
+        person.setBirthDate(
+//                new Birthday(
+//                        birthDay.getYear(),
+//                        birthDay.getMonthValue(),
+//                        birthDay.getDayOfMonth())
+                new Birthday(birthDay)
+        );
+
+        personRepository.save(person);
     }
 
 }

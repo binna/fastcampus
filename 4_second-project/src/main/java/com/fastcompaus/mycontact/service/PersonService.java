@@ -21,7 +21,7 @@ public class PersonService {
     private BlockRepository blockRepository;
 
     public List<Person> getPeopleExcludeBlocks() {
-        List<Person> people = personRepository.findAll();
+//        List<Person> people = personRepository.findAll();
 //        List<Block> blocks = blockRepository.findAll();
 //        List<String> blockNames = blocks
 //                .stream()
@@ -32,10 +32,21 @@ public class PersonService {
 //                .stream()
 //                .filter(person -> !blockNames.contains(person.getName()))
 //                .collect(Collectors.toList());
-        return people
-                .stream()
-                .filter(person -> person.getBlock() == null)
-                .collect(Collectors.toList());
+//        return people
+//                .stream()
+//                .filter(person -> person.getBlock() == null)
+//                .collect(Collectors.toList());
+        return personRepository.findByBlockIsNull();
+    }
+
+    public List<Person> getPeopleByName(String name) {
+//        List<Person> people = personRepository.findAll();
+//
+//        return people
+//                .stream()
+//                .filter(person -> person.getName().equals(name))
+//                .collect(Collectors.toList());
+        return personRepository.findByName(name);
     }
 
     @Transactional(readOnly = true)     // 저장하는 쿼리는 없고 조회하는 쿼리만 있을때 사용 중요!
