@@ -29,14 +29,14 @@ class HelloWorldControllerTest {
         assertThat(helloWorldController.helloWorld()).isEqualTo("HelloWorld");
     }
 
-    @Test
-    void mackMvcTest() throws Exception {
-        mockMvc = MockMvcBuilders.standaloneSetup(helloWorldController).build();
-        mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/helloWorld")
-        ).andDo(MockMvcResultHandlers.print())
-        .andExpect(MockMvcResultMatchers.status().isOk())
-        .andExpect(MockMvcResultMatchers.content().string("HelloWorld"));
-    }
+//    @Test
+//    void mackMvcTest() throws Exception {
+//        mockMvc = MockMvcBuilders.standaloneSetup(helloWorldController).build();
+//        mockMvc.perform(
+//                MockMvcRequestBuilders.get("/api/helloWorld")
+//        ).andDo(MockMvcResultHandlers.print())
+//        .andExpect(MockMvcResultMatchers.status().isOk())
+//        .andExpect(MockMvcResultMatchers.content().string("HelloWorld"));
+//    }
 
 }
