@@ -22,19 +22,27 @@ class PersonRepositoryTest {
     @Test
     void crud() {
         Person person = new Person();
-        person.setName("martin");
+//        person.setName("martin");
+        person.setName("john");
         person.setAge(10);
         person.setBloodType("A");
 
         personRepository.save(person);
 
-        System.out.println(personRepository.findAll());
+//        System.out.println(personRepository.findAll());
 
-        List<Person> people = personRepository.findAll();
+//        List<Person> people = personRepository.findAll();
+        List<Person> people = personRepository.findByName("john");
         assertThat(people.size()).isEqualTo(1);
-        assertThat(people.get(0).getName()).isEqualTo("martin");
+//        assertThat(people.get(0).getName()).isEqualTo("martin");
+        assertThat(people.get(0).getName()).isEqualTo("john");
         assertThat(people.get(0).getAge()).isEqualTo(10);
         assertThat(people.get(0).getBloodType()).isEqualTo("A");
+
+//        assertThat(people.size()).isEqualTo(2);
+//        assertThat(people.get(1).getName()).isEqualTo("john");
+//        assertThat(people.get(1).getAge()).isEqualTo(10);
+//        assertThat(people.get(1).getBloodType()).isEqualTo("A");
     }
 
 //    @Test
@@ -47,45 +55,48 @@ class PersonRepositoryTest {
 //        Person person = new Person("martin", 10);
 //    }
 
-    @Test
-    void hashCodeAndEquals() {
-        Person person1 = new Person("martin", 10, "A");
-        Person person2 = new Person("martin", 10,"A");
-
-        System.out.println(person1.equals(person2));
-        System.out.println(person1.hashCode());
-        System.out.println(person2.hashCode());
-
-        Map<Person, Integer> map = new HashMap<>();
-        map.put(person1, person1.getAge());
-
-        System.out.println(map);
-        System.out.println(map.get(person2));
-    }
+//    @Test
+//    void hashCodeAndEquals() {
+//        Person person1 = new Person("martin", 10, "A");
+//        Person person2 = new Person("martin", 10,"A");
+//
+//        System.out.println(person1.equals(person2));
+//        System.out.println(person1.hashCode());
+//        System.out.println(person2.hashCode());
+//
+//        Map<Person, Integer> map = new HashMap<>();
+//        map.put(person1, person1.getAge());
+//
+//        System.out.println(map);
+//        System.out.println(map.get(person2));
+//    }
 
     @Test
     void findByBloodType() {
-        givenPerson("martin", 10, "A");
-        givenPerson("david", 9, "B");
-        givenPerson("denis", 8,"O");
-        givenPerson("sophia", 8,"AB");
-        givenPerson("benny", 6, "A");
-        givenPerson("john", 5, "A");
+//        givenPerson("martin", 10, "A");
+//        givenPerson("david", 9, "B");
+//        givenPerson("denis", 8,"O");
+//        givenPerson("sophia", 8,"AB");
+//        givenPerson("benny", 6, "A");
+//        givenPerson("john", 5, "A");
 
 //        Person result = personRepository.findByBloodType("A");
 //        System.out.println(result);
 
         List<Person> result = personRepository.findByBloodType("A");
-        result.forEach(System.out::println);
+//        result.forEach(System.out::println);
+        assertThat(result.size()).isEqualTo(2);
+        assertThat(result.get(0).getName()).isEqualTo("martin");
+        assertThat(result.get(1).getName()).isEqualTo("benny");
     }
 
     @Test
     void findByBirthDayBetween() {
-        givenPerson("martin", 10, "A", LocalDate.of(1991, 8, 15));
-        givenPerson("david", 9, "B", LocalDate.of(1992, 7, 10));
-        givenPerson("denis", 8,"O", LocalDate.of(1993, 1, 5));
-        givenPerson("sophia", 8,"AB", LocalDate.of(1994, 6, 30));
-        givenPerson("benny", 6, "A", LocalDate.of(1995, 8, 30));
+//        givenPerson("martin", 10, "A", LocalDate.of(1991, 8, 15));
+//        givenPerson("david", 9, "B", LocalDate.of(1992, 7, 10));
+//        givenPerson("denis", 8,"O", LocalDate.of(1993, 1, 5));
+//        givenPerson("sophia", 8,"AB", LocalDate.of(1994, 6, 30));
+//        givenPerson("benny", 6, "A", LocalDate.of(1995, 8, 30));
 
         List<Person> result = personRepository
 //                .findByBirthDateBetween(
@@ -95,25 +106,28 @@ class PersonRepositoryTest {
                 .findByMonthOfBirthday(8);
 //                .findByMonthOfBirthdayAndDayOfBirthday(8, 30);
 
-        result.forEach(System.out::println);
+//        result.forEach(System.out::println);
+        assertThat(result.size()).isEqualTo(2);
+        assertThat(result.get(0).getName()).isEqualTo("martin");
+        assertThat(result.get(1).getName()).isEqualTo("sophia");
     }
 
-    private void givenPerson(String name, int age, String bloodType) {
-        personRepository.save(new Person(name, age, bloodType));
-    }
+//    private void givenPerson(String name, int age, String bloodType) {
+//        personRepository.save(new Person(name, age, bloodType));
+//    }
 
-    private void givenPerson(String name, int age, String bloodType, LocalDate birthDay) {
-        Person person = new Person(name, age, bloodType);
-
-        person.setBirthDate(
-//                new Birthday(
-//                        birthDay.getYear(),
-//                        birthDay.getMonthValue(),
-//                        birthDay.getDayOfMonth())
-                new Birthday(birthDay)
-        );
-
-        personRepository.save(person);
-    }
+//    private void givenPerson(String name, int age, String bloodType, LocalDate birthDay) {
+//        Person person = new Person(name, age, bloodType);
+//
+//        person.setBirthDate(
+////                new Birthday(
+////                        birthDay.getYear(),
+////                        birthDay.getMonthValue(),
+////                        birthDay.getDayOfMonth())
+//                new Birthday(birthDay)
+//        );
+//
+//        personRepository.save(person);
+//    }
 
 }
