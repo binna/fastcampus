@@ -1,10 +1,16 @@
 package com.fastcompaus.mycontact.domain;
 
+import com.fastcompaus.mycontact.controller.dto.PersonDTO;
 import com.fastcompaus.mycontact.domain.dto.Birthday;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Where;
+import org.springframework.util.ObjectUtils;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
 @Entity
@@ -20,6 +26,7 @@ import java.time.LocalDate;
             // => Data 어노테이션의 RequiredArgsConstructor 이
             // NoArgsConstructor 가 덮어지면서
             // RequiredArgsConstructor 의 효과가 없어지므로 다시 어노테이션으로 선언해줬다!!!
+@Where(clause = "deleted = false")
 public class Person {
 
     @Id
@@ -29,11 +36,14 @@ public class Person {
 //    @Getter
 //    @Setter
     @NonNull        // import lombok.NonNull
+    @NotEmpty
+    @Column(nullable = false)
     private String name;
 
 //    @Getter
 //    @Setter
     @NonNull        // import lombok.NonNull
+    @Min(1)
     private int age;
 
 //    @Getter
@@ -43,10 +53,13 @@ public class Person {
 //    @Getter
 //    @Setter
     @NonNull
+    @NotEmpty
+    @Column(nullable = false)
     private String bloodType;
 
 //    @Getter
 //    @Setter
+//    @Column(nullable = false)
     private String address;
 
 //    @Getter
@@ -60,7 +73,7 @@ public class Person {
 //    @Setter
     private String job;
 
-    @ToString.Exclude
+//    @ToString.Exclude
     private String phoneNumber;
 
     // fetch = FetchType.EAGER -> 디폴트값! : 1번만!! 한 방에 모든 데이터를!!-----
@@ -95,6 +108,35 @@ public class Person {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @ToString.Exclude
     private Block block;
+
+    @ColumnDefault("0")
+    private boolean deleted;
+
+    public void set(PersonDTO personDTO) {
+        if (personDTO.getAge() != 0) {
+            this.setAge(personDTO.getAge());
+        }
+
+        if(!ObjectUtils.isEmpty(personDTO.getHobby())) {
+            this.setHobby(personDTO.getHobby());
+        }
+
+        if(!ObjectUtils.isEmpty(personDTO.getBloodType())) {
+            this.setBloodType(personDTO.getBloodType());
+        }
+
+        if (!ObjectUtils.isEmpty(personDTO.getAddress())) {
+            this.setAddress(personDTO.getAddress());
+        }
+
+        if(!ObjectUtils.isEmpty(personDTO.getJob())) {
+            this.setJob(personDTO.getJob());
+        }
+
+        if(!ObjectUtils.isEmpty(personDTO.getPhoneNumber())) {
+            this.setPhoneNumber(personDTO.getPhoneNumber());
+        }
+    }
 
 //    public Long getId() {
 //        return id;
