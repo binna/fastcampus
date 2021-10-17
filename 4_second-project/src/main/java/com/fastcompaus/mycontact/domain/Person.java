@@ -3,6 +3,8 @@ package com.fastcompaus.mycontact.domain;
 import com.fastcompaus.mycontact.controller.dto.PersonDTO;
 import com.fastcompaus.mycontact.domain.dto.Birthday;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Where;
 import org.springframework.util.ObjectUtils;
 
 import javax.persistence.*;
@@ -24,6 +26,7 @@ import java.time.LocalDate;
             // => Data 어노테이션의 RequiredArgsConstructor 이
             // NoArgsConstructor 가 덮어지면서
             // RequiredArgsConstructor 의 효과가 없어지므로 다시 어노테이션으로 선언해줬다!!!
+@Where(clause = "deleted = false")
 public class Person {
 
     @Id
@@ -105,6 +108,9 @@ public class Person {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @ToString.Exclude
     private Block block;
+
+    @ColumnDefault("0")
+    private boolean deleted;
 
     public void set(PersonDTO personDTO) {
         if (personDTO.getAge() != 0) {

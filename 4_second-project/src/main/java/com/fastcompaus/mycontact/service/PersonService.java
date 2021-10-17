@@ -111,4 +111,21 @@ public class PersonService {
         personRepository.save(person);
     }
 
+    @Transactional
+    public void delete(Long id) {
+        // 1. DB 데이터 삭제
+        // 첫번째 방법
+//        Person person = personRepository.findById(id).orElseThrow(() -> new RuntimeException("아이디가 존재하지 않습니다."));
+//        personRepository.delete(person);
+
+        // 두번째 방법
+//        personRepository.deleteById(id);
+
+
+        // 2. deleted의 값을 true로 변경
+        Person person = personRepository.findById(id).orElseThrow(() -> new RuntimeException("아이디가 존재하지 않습니다."));
+        person.setDeleted(true);
+        personRepository.save(person);
+    }
+
 }
