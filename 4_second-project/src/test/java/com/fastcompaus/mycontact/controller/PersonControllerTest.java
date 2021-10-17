@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -13,7 +12,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-//@Sql("/testData.sql")
 @SpringBootTest
 class PersonControllerTest {
     @Autowired
@@ -45,8 +43,34 @@ class PersonControllerTest {
                                 "    \"bloodType\": \"A\"\n" +
                                 "}"))
                 .andDo(print())
-                .andExpect(status().isCreated()
-        );
+                .andExpect(status().isCreated());
+    }
+
+    @Test
+    void modifyPerson() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(personController).build();
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.put("/api/person?id=1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\n" +
+                                "    \"name\": \"martin\",\n" +
+                                "    \"age\": 200,\n" +
+                                "    \"bloodType\": \"AB\"\n" +
+                                "}"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void modifyName() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(personController).build();
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.patch("/api/person/1")
+                        .param("name", "martin2"))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 
 }

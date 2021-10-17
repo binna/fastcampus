@@ -1,7 +1,9 @@
 package com.fastcompaus.mycontact.service;
 
+import com.fastcompaus.mycontact.controller.dto.PersonDTO;
 import com.fastcompaus.mycontact.domain.Block;
 import com.fastcompaus.mycontact.domain.Person;
+import com.fastcompaus.mycontact.domain.dto.Birthday;
 import com.fastcompaus.mycontact.reporitory.BlockRepository;
 import com.fastcompaus.mycontact.reporitory.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -71,6 +73,41 @@ public class PersonService {
 
     @Transactional
     public void put(Person person) {
+        personRepository.save(person);
+    }
+
+    @Transactional
+    public void modify(Long id, PersonDTO personDTO) {
+        Person person = personRepository.findById(id).orElseThrow(() -> new RuntimeException("아이디가 존재하지 않습니다."));
+
+        if (!person.getName().equals(person.getName())) {
+            throw new RuntimeException("이름이 다릅니다.");
+        }
+
+//        person.setName(personDTO.getName());
+//        personAtDb.setPhoneNumber(personDTO.getPhoneNumber());
+//        personAtDb.setJob(personDTO.getJob());
+
+        if (personDTO.getBirthday() != null) {
+            person.setBirthDate(new Birthday(personDTO.getBirthday()));
+        }
+
+//        personAtDb.setAddress(personDTO.getAddress());
+//        personAtDb.setBloodType(personDTO.getBloodType());
+//        personAtDb.setHobby(personDTO.getHobby());
+//        personAtDb.setAge(personDTO.getAge());
+
+        person.set(personDTO);
+
+        personRepository.save(person);
+    }
+
+    @Transactional
+    public void modify(Long id, String name) {
+        Person person = personRepository.findById(id).orElseThrow(() -> new RuntimeException("아이디가 존재하지 않습니다."));
+
+        person.setName(name);
+
         personRepository.save(person);
     }
 

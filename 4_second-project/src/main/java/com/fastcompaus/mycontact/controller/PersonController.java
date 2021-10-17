@@ -1,5 +1,6 @@
 package com.fastcompaus.mycontact.controller;
 
+import com.fastcompaus.mycontact.controller.dto.PersonDTO;
 import com.fastcompaus.mycontact.domain.Person;
 import com.fastcompaus.mycontact.reporitory.PersonRepository;
 import com.fastcompaus.mycontact.service.PersonService;
@@ -28,6 +29,20 @@ public class PersonController {
     @ResponseStatus(HttpStatus.CREATED)
     public void postPerson(@RequestBody Person person) {
         personService.put(person);
+
+        log.info("person -> {}", personRepository.findAll());
+    }
+
+    @PutMapping
+    public void modifyPerson(Long id, @RequestBody PersonDTO person) {
+        personService.modify(id, person);
+
+        log.info("person -> {}", personRepository.findAll());
+    }
+
+    @PatchMapping("/{id}")      // 일부 리소스만 업데이트 한다는 의미!
+    public void modifyPerson(@PathVariable Long id, String name) {
+        personService.modify(id, name);
 
         log.info("person -> {}", personRepository.findAll());
     }
