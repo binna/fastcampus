@@ -5,6 +5,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
 @Entity
@@ -29,11 +31,14 @@ public class Person {
 //    @Getter
 //    @Setter
     @NonNull        // import lombok.NonNull
+    @NotEmpty
+    @Column(nullable = false)
     private String name;
 
 //    @Getter
 //    @Setter
     @NonNull        // import lombok.NonNull
+    @Min(1)
     private int age;
 
 //    @Getter
@@ -43,6 +48,8 @@ public class Person {
 //    @Getter
 //    @Setter
     @NonNull
+    @NotEmpty
+    @Column(nullable = false)
     private String bloodType;
 
 //    @Getter
