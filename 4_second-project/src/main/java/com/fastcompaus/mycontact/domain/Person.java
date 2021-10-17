@@ -38,7 +38,7 @@ public class Person {
 
 //    @Getter
 //    @Setter
-    private String hobby;
+//    private String hobby;
 
 //    @Getter
 //    @Setter
@@ -47,7 +47,8 @@ public class Person {
 
 //    @Getter
 //    @Setter
-    private String address;
+//    @Column(nullable = false)
+//    private String address;
 
 //    @Getter
 //    @Setter
@@ -58,10 +59,10 @@ public class Person {
 
 //    @Getter
 //    @Setter
-    private String job;
+//    private String job;
 
-    @ToString.Exclude
-    private String phoneNumber;
+//    @ToString.Exclude
+//    private String phoneNumber;
 
     // fetch = FetchType.EAGER -> 디폴트값! : 1번만!! 한 방에 모든 데이터를!!-----
     // select

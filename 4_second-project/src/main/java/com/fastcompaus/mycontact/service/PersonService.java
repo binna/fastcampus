@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -51,7 +52,16 @@ public class PersonService {
 
     @Transactional(readOnly = true)     // 저장하는 쿼리는 없고 조회하는 쿼리만 있을때 사용 중요!
     public Person getPerson(Long id) {
-        Person person = personRepository.findById(id).get();
+//        Person person = personRepository.findById(id).get();
+
+//        Optional<Person> person = personRepository.findById(id);
+//
+//        if (person.isPresent()) {
+//            return person.get();
+//        } else {
+//            return null;
+//        }
+        Person person = personRepository.findById(id).orElse(null);
 
         System.out.println("person : " + person);
         log.info("person : {}", person);
