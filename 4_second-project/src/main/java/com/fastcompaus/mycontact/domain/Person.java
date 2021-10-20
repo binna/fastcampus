@@ -33,47 +33,21 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Getter
-//    @Setter
     @NonNull        // import lombok.NonNull
     @NotEmpty
     @Column(nullable = false)
     private String name;
 
-//    @Getter
-//    @Setter
-//    @NonNull        // import lombok.NonNull
-//    @Min(1)
-//    private int age;
-
-//    @Getter
-//    @Setter
     private String hobby;
 
-//    @Getter
-//    @Setter
-//    @NonNull
-//    @NotEmpty
-//    @Column(nullable = false)
-//    private String bloodType;
-
-//    @Getter
-//    @Setter
-//    @Column(nullable = false)
     private String address;
 
-//    @Getter
-//    @Setter
-//    private LocalDate birthDate;
     @Valid
     @Embedded
     private Birthday birthDate;
 
-//    @Getter
-//    @Setter
     private String job;
 
-//    @ToString.Exclude
     private String phoneNumber;
 
     // fetch = FetchType.EAGER -> 디폴트값! : 1번만!! 한 방에 모든 데이터를!!-----
@@ -113,17 +87,10 @@ public class Person {
     private boolean deleted;
 
     public void set(PersonDTO personDTO) {
-//        if (personDTO.getAge() != 0) {
-//            this.setAge(personDTO.getAge());
-//        }
 
         if(!ObjectUtils.isEmpty(personDTO.getHobby())) {
             this.setHobby(personDTO.getHobby());
         }
-
-//        if(!ObjectUtils.isEmpty(personDTO.getBloodType())) {
-//            this.setBloodType(personDTO.getBloodType());
-//        }
 
         if (!ObjectUtils.isEmpty(personDTO.getAddress())) {
             this.setAddress(personDTO.getAddress());
@@ -159,124 +126,4 @@ public class Person {
         );
     }
 
-//    public Long getId() {
-//        return id;
-//    }
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public int getAge() {
-//        return age;
-//    }
-//    public void setAge(int age) {
-//        this.age = age;
-//    }
-//
-//    public String getHobby() {
-//        return hobby;
-//    }
-//    public void setHobby(String hobby) {
-//        this.hobby = hobby;
-//    }
-//
-//    public String getBloodType() {
-//        return bloodType;
-//    }
-//    public void setBloodType(String bloodType) {
-//        this.bloodType = bloodType;
-//    }
-//
-//    public String getAddress() {
-//        return address;
-//    }
-//    public void setAddress(String address) {
-//        this.address = address;
-//    }
-//
-//    public LocalDate getBirthDate() {
-//        return birthDate;
-//    }
-//    public void setBirthDate(LocalDate birthDate) {
-//        this.birthDate = birthDate;
-//    }
-//
-//    public String getJob() {
-//        return job;
-//    }
-//    public void setJob(String job) {
-//        this.job = job;
-//    }
-
-//    @Override
-//    public String toString() {
-//        return "Person{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", age=" + age +
-//                '}';
-//    }
-
-//    @Override
-//    public String toString() {
-//        return "Person{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", age=" + age +
-//                ", hobby='" + hobby + '\'' +
-//                ", bloodType='" + bloodType + '\'' +
-//                ", address='" + address + '\'' +
-//                ", birthDate=" + birthDate +
-//                ", job='" + job + '\'' +
-//                '}';
-//    }
-
-//    public Person() {}
-//
-//    public Person(String name, int age) {
-//        this.name = name;
-//        this.age = age;
-//    }
-//
-//    public Person(Long id, String name, int age, String hobby, String bloodType,
-//                  String address, LocalDate birthDate, String job, String phoneNumber) {
-//        this.id = id;
-//        this.name = name;
-//        this.age = age;
-//        this.hobby = hobby;
-//        this.bloodType = bloodType;
-//        this.address = address;
-//        this.birthDate = birthDate;
-//        this.job = job;
-//        this.phoneNumber = phoneNumber;
-//    }
-
-//    public boolean equals(Object object) {
-//        if (object == null) {
-//            return false;
-//        }
-//
-//        Person person = (Person) object;
-//
-//        if(!person.getName().equals(this.getName())) {
-//            return false;
-//        }
-//
-//        if(person.getAge() != this.getAge()) {
-//            return false;
-//        }
-//
-//        return true;
-//    }
-
-//    public int hashCode() {
-//        return (name + age).hashCode();
-//    }
 }
