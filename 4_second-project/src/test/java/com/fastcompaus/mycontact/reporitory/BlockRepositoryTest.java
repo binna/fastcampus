@@ -11,31 +11,31 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-@SpringBootTest
+//@SpringBootTest
 class BlockRepositoryTest {
 
-    @Autowired
-    private BlockRepository blockRepository;
-
-    @Test
-    public void crud() {
-        Block block = new Block();
-
-        block.setName("martin");
-        block.setReason("친하지 않아서");
-        block.setStartDate(LocalDate.now());
-        block.setEndDate(LocalDate.now());
-
-        blockRepository.save(block);
-
-        List<Block> blocks = blockRepository.findAll();
-
-//        assertThat(blocks.size()).isEqualTo(1);
-//        assertThat(blocks.get(0).getName()).isEqualTo("martin");
-        assertThat(blocks.size()).isEqualTo(3);
-        assertThat(blocks.get(0).getName()).isEqualTo("dennis");
-        assertThat(blocks.get(1).getName()).isEqualTo("sophia");
-        assertThat(blocks.get(2).getName()).isEqualTo("martin");
-    }
+//    @Autowired
+//    private BlockRepository blockRepository;
+//
+//    @Test
+//    public void crud() {
+//        Block block = new Block();
+//
+//        block.setName("martin");
+//        block.setReason("친하지 않아서");
+//        block.setStartDate(LocalDate.now());
+//        block.setEndDate(LocalDate.now());
+//
+//        blockRepository.save(block);
+//
+//        List<Block> blocks = blockRepository.findAll();
+//
+////        assertThat(blocks.size()).isEqualTo(1);
+////        assertThat(blocks.get(0).getName()).isEqualTo("martin");
+//        assertThat(blocks.size()).isEqualTo(3);
+//        assertThat(blocks.get(0).getName()).isEqualTo("dennis");
+//        assertThat(blocks.get(1).getName()).isEqualTo("sophia");
+//        assertThat(blocks.get(2).getName()).isEqualTo("martin");
+//    }
 
 }

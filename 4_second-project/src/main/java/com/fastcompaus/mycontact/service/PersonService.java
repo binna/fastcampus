@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
 public class PersonService {
     @Autowired
     private PersonRepository personRepository;
-    @Autowired
-    private BlockRepository blockRepository;
+//    @Autowired
+//    private BlockRepository blockRepository;
 
-    public List<Person> getPeopleExcludeBlocks() {
+//    public List<Person> getPeopleExcludeBlocks() {
 //        List<Person> people = personRepository.findAll();
 //        List<Block> blocks = blockRepository.findAll();
 //        List<String> blockNames = blocks
@@ -39,8 +39,8 @@ public class PersonService {
 //                .stream()
 //                .filter(person -> person.getBlock() == null)
 //                .collect(Collectors.toList());
-        return personRepository.findByBlockIsNull();
-    }
+//        return personRepository.findByBlockIsNull();
+//    }
 
     public List<Person> getPeopleByName(String name) {
 //        List<Person> people = personRepository.findAll();

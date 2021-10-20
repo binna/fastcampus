@@ -8,18 +8,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
-@RequiredArgsConstructor
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Data
+//@RequiredArgsConstructor
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Entity
+//@Data
 public class Block {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NonNull
-    private String name;
-    private String reason;
-    private LocalDate startDate;
-    private LocalDate endDate;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+//    @NonNull
+//    private String name;
+//    private String reason;
+//    private LocalDate startDate;
+//    private LocalDate endDate;
 }

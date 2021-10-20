@@ -21,23 +21,23 @@ class PersonServiceTest {
     private PersonService personService;
     @Autowired
     private PersonRepository personRepository;
-    @Autowired
-    private BlockRepository blockRepository;
+//    @Autowired
+//    private BlockRepository blockRepository;
 
-    @Test
-    void getPeopleExcludeBlocks() {
-//        givenPerson();
-//        givenBlock();
-
-        List<Person> result = personService.getPeopleExcludeBlocks();
-
-//        System.out.println(result);
-//        result.forEach(System.out::println);
-        assertThat(result.size()).isEqualTo(3);
-        assertThat(result.get(0).getName()).isEqualTo("martin");
-        assertThat(result.get(1).getName()).isEqualTo("david");
-        assertThat(result.get(2).getName()).isEqualTo("benny");
-    }
+//    @Test
+//    void getPeopleExcludeBlocks() {
+////        givenPerson();
+////        givenBlock();
+//
+//        List<Person> result = personService.getPeopleExcludeBlocks();
+//
+////        System.out.println(result);
+////        result.forEach(System.out::println);
+//        assertThat(result.size()).isEqualTo(3);
+//        assertThat(result.get(0).getName()).isEqualTo("martin");
+//        assertThat(result.get(1).getName()).isEqualTo("david");
+//        assertThat(result.get(2).getName()).isEqualTo("benny");
+//    }
 
     @Test
     void getPeopleByName() {
