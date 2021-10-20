@@ -42,9 +42,9 @@ public class Person {
 
 //    @Getter
 //    @Setter
-    @NonNull        // import lombok.NonNull
-    @Min(1)
-    private int age;
+//    @NonNull        // import lombok.NonNull
+//    @Min(1)
+//    private int age;
 
 //    @Getter
 //    @Setter
@@ -113,9 +113,9 @@ public class Person {
     private boolean deleted;
 
     public void set(PersonDTO personDTO) {
-        if (personDTO.getAge() != 0) {
-            this.setAge(personDTO.getAge());
-        }
+//        if (personDTO.getAge() != 0) {
+//            this.setAge(personDTO.getAge());
+//        }
 
         if(!ObjectUtils.isEmpty(personDTO.getHobby())) {
             this.setHobby(personDTO.getHobby());
@@ -136,6 +136,23 @@ public class Person {
         if(!ObjectUtils.isEmpty(personDTO.getPhoneNumber())) {
             this.setPhoneNumber(personDTO.getPhoneNumber());
         }
+    }
+
+
+    private Integer getAge() {
+        if (this.birthDate != null) {
+            return LocalDate.now().getYear() - this.birthDate.getYearOfBirthday() + 1;
+        }
+        return null;
+    }
+    public boolean isBirthDayToday() {
+        return LocalDate.now().equals(
+                LocalDate.of(
+                        this.birthDate.getYearOfBirthday(),
+                        this.birthDate.getMonthOfBirthday(),
+                        this.birthDate.getDayOfBirthday()
+                )
+        );
     }
 
 //    public Long getId() {

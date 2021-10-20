@@ -88,9 +88,9 @@ public class PersonService {
 //        personAtDb.setPhoneNumber(personDTO.getPhoneNumber());
 //        personAtDb.setJob(personDTO.getJob());
 
-        if (personDTO.getBirthday() != null) {
-            person.setBirthDate(new Birthday(personDTO.getBirthday()));
-        }
+//        if (personDTO.getBirthday() != null) {
+//            person.setBirthDate(new Birthday(personDTO.getBirthday()));
+//        }
 
 //        personAtDb.setAddress(personDTO.getAddress());
 //        personAtDb.setBloodType(personDTO.getBloodType());

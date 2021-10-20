@@ -24,7 +24,7 @@ class PersonRepositoryTest {
         Person person = new Person();
 //        person.setName("martin");
         person.setName("john");
-        person.setAge(10);
+//        person.setAge(10);
         person.setBloodType("A");
 
         personRepository.save(person);
@@ -36,7 +36,7 @@ class PersonRepositoryTest {
         assertThat(people.size()).isEqualTo(1);
 //        assertThat(people.get(0).getName()).isEqualTo("martin");
         assertThat(people.get(0).getName()).isEqualTo("john");
-        assertThat(people.get(0).getAge()).isEqualTo(10);
+//        assertThat(people.get(0).getAge()).isEqualTo(10);
         assertThat(people.get(0).getBloodType()).isEqualTo("A");
 
 //        assertThat(people.size()).isEqualTo(2);
@@ -105,6 +105,10 @@ class PersonRepositoryTest {
 //                );
                 .findByMonthOfBirthday(8);
 //                .findByMonthOfBirthdayAndDayOfBirthday(8, 30);
+
+        Person martin = new Person();
+//        martin.getBirthDate().getAge();
+//        martin.get
 
 //        result.forEach(System.out::println);
         assertThat(result.size()).isEqualTo(2);
