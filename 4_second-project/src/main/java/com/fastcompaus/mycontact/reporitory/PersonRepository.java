@@ -39,5 +39,5 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
 //    @Query(value = "select person from Person person where person.deleted = true")
     @Query(value = "select * from person where deleted=true", nativeQuery = true)
-    List<Person> findByDeleted();
+    List<Person> findPeopleDeleted();
 }

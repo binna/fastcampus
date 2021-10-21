@@ -1,6 +1,6 @@
 insert
-    into person(`id`, `name`, `year_of_birthday`, `month_of_birthday`, `day_of_birthday`, `job`)
-    values (1, 'martin', 1991, 8, 15, 'programmer');
+    into person(`id`, `name`, `year_of_birthday`, `month_of_birthday`, `day_of_birthday`)
+    values (1, 'martin', 1991, 8, 15);
 
 insert
     into person(`id`, `name`, `year_of_birthday`, `month_of_birthday`, `day_of_birthday`)

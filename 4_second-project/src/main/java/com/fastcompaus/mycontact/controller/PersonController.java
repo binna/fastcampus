@@ -30,29 +30,32 @@ public class PersonController {
     public void postPerson(@RequestBody Person person) {
         personService.put(person);
 
-        log.info("person -> {}", personRepository.findAll());
+//        log.info("person -> {}", personRepository.findAll());
     }
 
     @PutMapping
     public void modifyPerson(Long id, @RequestBody PersonDTO person) {
         personService.modify(id, person);
 
-        log.info("person -> {}", personRepository.findAll());
+//        log.info("person -> {}", personRepository.findAll());
     }
 
     @PatchMapping("/{id}")      // 일부 리소스만 업데이트 한다는 의미!
     public void modifyPerson(@PathVariable Long id, String name) {
         personService.modify(id, name);
 
-        log.info("person -> {}", personRepository.findAll());
+//        log.info("person -> {}", personRepository.findAll());
     }
 
     @DeleteMapping("/{id}")
     public void deletePerson(@PathVariable Long id) {
+//    public boolean deletePerson(@PathVariable Long id) {
         personService.delete(id);
 
-        log.info("person -> {}", personRepository.findAll());
-        log.info("people deleted : {}", personRepository.findByDeleted());
+//        log.info("person -> {}", personRepository.findAll());
+
+//        return true;
+//        return personRepository.findPeopleDeleted().stream().anyMatch(person -> person.getId().equals(id));
     }
 
 }
